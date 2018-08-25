@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css'
 
 class Square extends React.Component {
     render() {
