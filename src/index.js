@@ -1,14 +1,75 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Grid, Row, Col, Button } from 'react-bootstrap';
+import { Panel, Grid, Row, Col, Button, ButtonToolbar, Popover, Overlay, OverlayTrigger } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
-class Square extends React.Component {
+class PopButton extends React.Component {
+    render(){
+        return (
+            <Button bsStyle="info" bsSize="small" onClick={this.handleClick}>0</Button>
+        );
+    }
+}
+
+class PopoverGrid extends React.Component {
+    renderPopButton(i){
+        return <PopButton />;
+    }
     render() {
         return (
-            <Col sm={12} style={{marginLeft: 2,paddingLeft:2, marginRight: 0, paddingRight: 0,marginBottom: 1, paddingBottom: 1}}>
-                <Button bsStyle="info" bsSize="large" block>0</Button>
+            <Grid fluid>
+                <Row>
+                    <Col>{this.renderPopButton(1)}</Col>
+                    <Col>{this.renderPopButton(1)}</Col>
+                    <Col>{this.renderPopButton(1)}</Col>
+                </Row>
+                <Row>
+                    <Col>{this.renderPopButton(1)}</Col>
+                    <Col>{this.renderPopButton(1)}</Col>
+                    <Col>{this.renderPopButton(1)}</Col>
+                </Row>
+                <Row>
+                    <Col>{this.renderPopButton(1)}</Col>
+                    <Col>{this.renderPopButton(1)}</Col>
+                    <Col>{this.renderPopButton(1)}</Col>
+                </Row>
+            </Grid>
+        );
+    }
+}
+
+class Square extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.handleClick = e => {
+            console.log("In handle onclick");
+            this.setState({ target: e.target, show: !this.state.show });
+        };
+
+        this.state = {
+            show: false
+        };
+    }
+
+    render() {
+        return (
+            <Col sm={12} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0, marginBottom: 1, paddingBottom: 1 }}>
+                <ButtonToolbar>
+                    <Button className="customButton" bsStyle="info" bsSize="large" block onClick={this.handleClick}>0</Button>
+                    <Overlay
+                        show={this.state.show}
+                        target={this.state.target}
+                        onHide={() => this.setState({ show: false })}
+                        placement="bottom"
+                        rootClose={true}
+                    >
+                        <Popover id="popover-contained">
+                            <PopoverGrid />
+                        </Popover>
+                    </Overlay>
+                </ButtonToolbar>
             </Col>
         );
     }
@@ -20,23 +81,41 @@ class Block extends React.Component {
     }
     render() {
         return (
-            <Row style={{marginLeft: 0,paddingLeft:0, marginRight: 0, paddingRight: 0}}>
-                <Col sm={4} style={{marginLeft: 0,paddingLeft:0, marginRight: 0, paddingRight: 0}}>
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
+            <Col sm={12} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                <Col sm={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0, marginBottom: 0 }}>
+                    <Col sm={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                        {this.renderSquare(0)}
+                    </Col>
+                    <Col sm={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                        {this.renderSquare(3)}
+                    </Col>
+                    <Col sm={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 5 }}>
+                        {this.renderSquare(6)}
+                    </Col>
                 </Col>
-                <Col sm={4} style={{marginLeft: 0,paddingLeft:0, marginRight: 0, paddingRight: 0}}>
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
+                <Col sm={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                    <Col xs={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                        {this.renderSquare(0)}
+                    </Col>
+                    <Col xs={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                        {this.renderSquare(3)}
+                    </Col>
+                    <Col xs={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 5 }}>
+                        {this.renderSquare(6)}
+                    </Col>
                 </Col>
-                <Col sm={4} style={{marginLeft: 0,paddingLeft:0, marginRight: 0, paddingRight: 0}}>
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
+                <Col sm={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                    <Col xs={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                        {this.renderSquare(0)}
+                    </Col>
+                    <Col xs={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                        {this.renderSquare(3)}
+                    </Col>
+                    <Col xs={4} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 5 }}>
+                        {this.renderSquare(6)}
+                    </Col>
                 </Col>
-            </Row>
+            </Col>
         );
     }
 }
@@ -48,25 +127,26 @@ class Board extends React.Component {
     render() {
         return (
             <Grid fluid>
-                <Row style={{marginLeft: 5,paddingLeft:5, marginRight: 0, paddingRight: 0}}>
-                    <Col style={{marginLeft: 0,paddingLeft:0, marginRight: 0, paddingRight: 0}}>
+                {/* <span className="border"> */}
+                <Row style={{ marginLeft: 0, paddingLeft: 0, marginTop: 5, marginRight: 0, paddingRight: 0 }}>
+                    <Col sm={5} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
                         {this.renderBlock(0)}
                         {this.renderBlock(1)}
                         {this.renderBlock(2)}
                     </Col>
-                    {/* </Row> */}
-                    {/* <Row> */}
-                    <Col style={{marginLeft: 0,paddingLeft:0, marginRight: 0, paddingRight: 0}}>
-                        {this.renderBlock(3)}
-                        {this.renderBlock(4)}
-                        {this.renderBlock(5)}
+                </Row>
+                <Row style={{ marginLeft: 0, paddingLeft: 0, marginTop: 5, marginRight: 0, paddingRight: 0 }}>
+                    <Col sm={5} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                        {this.renderBlock(0)}
+                        {this.renderBlock(1)}
+                        {this.renderBlock(2)}
                     </Col>
-                    {/* </Row>
-                    <Row> */}
-                    <Col style={{marginLeft: 0,paddingLeft:0, marginRight: 0, paddingRight: 0}}>
-                        {this.renderBlock(6)}
-                        {this.renderBlock(7)}
-                        {this.renderBlock(8)}
+                </Row>
+                <Row style={{ marginLeft: 0, paddingLeft: 0, marginTop: 5, marginRight: 0, paddingRight: 0 }}>
+                    <Col sm={5} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
+                        {this.renderBlock(0)}
+                        {this.renderBlock(1)}
+                        {this.renderBlock(2)}
                     </Col>
                 </Row>
             </Grid>

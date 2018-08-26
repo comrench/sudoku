@@ -7,3 +7,12 @@
     background: lightgrey;
     border: 1px solid grey;
   } */
+  .customButton {
+    width: 90% !important;
+    height: 90% !important;
+    /* margin-left: 0%;
+    margin-right: 0%;
+    padding-left: 0%;
+    padding-right: 0%; */
+    border: 1px solid black;
+}
