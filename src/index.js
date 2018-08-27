@@ -12,7 +12,7 @@ class PopButton extends React.Component {
     }
 
     gridButtonValueChange(event){
-        console.log("pop value "+event.target.innerHTML);
+        // console.log("pop value "+event.target.innerHTML);
         this.props.onGridButtonValueChange(event.target.innerHTML);
         this.exitPopover();
     }
@@ -44,7 +44,7 @@ class PopoverGrid extends React.Component {
     }
 
     gridButtonValueChange(gridButtonValue){
-        console.log("Value from popover grid: "+gridButtonValue);
+        // console.log("Value from popover grid: "+gridButtonValue);
         this.props.onGridButtonValueChange(gridButtonValue);
     }
 
@@ -53,7 +53,7 @@ class PopoverGrid extends React.Component {
     }
 
     render() {
-        console.log("Value clicked: "+this.props.gridButtonValue);
+        // console.log("Value clicked: "+this.props.gridButtonValue);
         return (
             <Grid fluid style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
                 <Col sm={12} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0 }}>
@@ -103,7 +103,7 @@ class Square extends React.Component {
 
     gridButtonValueChange(gridButtonValue){
         // console.log("Value from Square: "+gridButtonValue);
-        this.setState =  ({
+        this.setState({
             gridButtonValue: gridButtonValue
         });
         // console.log("After update in Button: "+this.state.gridButtonValue);
@@ -112,7 +112,7 @@ class Square extends React.Component {
     render() {
 
         const value = this.state.gridButtonValue ? this.state.gridButtonValue : " ";
-        console.log("present value: "+value);
+        // console.log("present value: "+value);
         return (
             
             <Col sm={12} style={{ marginLeft: 0, paddingLeft: 0, marginRight: 0, paddingRight: 0, marginBottom: 1, paddingBottom: 1 }}>
@@ -198,7 +198,7 @@ class Board extends React.Component {
             blockGrid={values} />;
     }
     render() {
-        console.log(this.props.grid[0]);
+        // console.log(this.props.grid[0]);
         return (
             <Grid fluid>
                 {/* <span className="border"> */}
