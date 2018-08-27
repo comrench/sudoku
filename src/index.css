@@ -8,11 +8,19 @@
     border: 1px solid grey;
   } */
   .customButton {
+    /* width: 90% !important;
+    height: 90% !important; */
     width: 90% !important;
-    height: 90% !important;
+    height: 59.5px !important;
     /* margin-left: 0%;
     margin-right: 0%;
     padding-left: 0%;
     padding-right: 0%; */
-    border: 1px solid black;
+    border: 1px solid blue;
 }
+/* Col {
+  margin-left: 0% !important;
+  margin-right: 0% !important;
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+} */
