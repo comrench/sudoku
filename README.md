@@ -27,4 +27,4 @@ We suggest that you begin by typing:
   
   npm start
 
-[Live Demo](https://codepen.io/comrench/pen/KxvJZj)
+[Live Demo](https://codepen.io/comrench/full/KxvJZj)
