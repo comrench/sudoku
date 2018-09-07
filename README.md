@@ -27,4 +27,4 @@ We suggest that you begin by typing:
   
   npm start
 
-Happy hacking!
+[Live Demo](https://codepen.io/comrench/pen/KxvJZj)
